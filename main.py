@@ -1384,10 +1384,8 @@ def callback(call):
                 lg4 = types.KeyboardButton('4')
                 lg5 = types.KeyboardButton('5')
                 lg6 = types.KeyboardButton('6')
-                lg_meneger = types.KeyboardButton('Связь с менеджером 👨🏻‍💻', callback_data='connect_admin',
-                                                  url='https://t.me/hostmaster_support')
-                lg_back = types.KeyboardButton('Возврат 🔙')
-                markup_.add(lg1, lg2, lg3, lg4, lg5, lg6, lg_meneger, lg_back)
+
+                markup_.add(lg1, lg2, lg3, lg4, lg5, lg6)
 
                 bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
                                  reply_markup=markup_)
