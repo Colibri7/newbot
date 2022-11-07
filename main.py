@@ -2466,38 +2466,12 @@ def callback(call):
 
     c.close()
 
-
-def job2():
-    day_of_month = dt.now().day
-
-    if day_of_month == 27:
-        bot.send_message(332749197, 'hello')
-
-
 def schedule_checker():
     while True:
         schedule.run_pending()
         time.sleep(1)
 
 
-if __name__ == "__main__":
-    schedule.every().day.at("09:01").do(domen_60_days_schedule)
-    schedule.every().day.at("09:02").do(domen_30_days_schedule)
-    schedule.every().day.at("09:03").do(domen_10_days_schedule)
-    schedule.every().day.at("09:04").do(domen_1_days_schedule)
-    schedule.every().day.at("09:05").do(hosting_2_days_schedule)
-    schedule.every().day.at("09:06").do(hosting_1_days_schedule)
-    schedule.every().day.at("09:07").do(hosting_0_days_schedule)
-    schedule.every().day.at("09:08").do(vds_2_days_schedule)
-    schedule.every().day.at("09:09").do(vds_1_days_schedule)
-    schedule.every().day.at("09:10").do(vds_0_days_schedule)
-    schedule.every().day.at("09:11").do(ds_2_days_schedule)
-    # schedule.every().day.at("10:10").do(ds_1_days_schedule)
-    # schedule.every().day.at("10:10").do(ds_0_days_schedule)
-    schedule.every().day.at("08:00").do(send_domain_list_every_day)
-    schedule.every().day.at("08:00").do(send_hosting_list_every_day)
-    schedule.every().day.at("08:00").do(send_vds_list_every_day)
 
-    Thread(target=schedule_checker).start()
 
 bot.polling(none_stop=True)
