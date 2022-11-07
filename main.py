@@ -1314,6 +1314,22 @@ def questions(message):
         bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof', )
 
 
+@bot.message_handler(content_types=['text'])
+def helpp(message):
+    if message.text == 'Техническому':
+        markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        lg1 = types.KeyboardButton('Домены')
+        lg2 = types.KeyboardButton('VDS')
+        lg3 = types.KeyboardButton('Хостинг')
+        lg4 = types.KeyboardButton('DS')
+        lg6_back = types.KeyboardButton('Возврат')
+        markup_.add(lg1, lg2, lg3, lg4, lg6_back)
+
+        bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
+                         reply_markup=markup_)
+        bot.register_next_step_handler(message, questions)
+
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
     connection = pymysql.connect(host='62.209.143.131',
@@ -1381,19 +1397,6 @@ def callback(call):
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
     elif call.data == 'helpp':
-        def helpp(message):
-            if message.text == 'Техническому':
-                markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-                lg1 = types.KeyboardButton('Домены')
-                lg2 = types.KeyboardButton('VDS')
-                lg3 = types.KeyboardButton('Хостинг')
-                lg4 = types.KeyboardButton('DS')
-                lg6_back = types.KeyboardButton('Возврат')
-                markup_.add(lg1, lg2, lg3, lg4, lg6_back)
-
-                bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
-                                 reply_markup=markup_)
-                bot.register_next_step_handler(call.message, questions)
 
         markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('Техническому')
