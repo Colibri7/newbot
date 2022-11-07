@@ -122,7 +122,6 @@ def log(message):
                     bot.register_next_step_handler(message, tech)
                 elif message.text == 'Коммерческому':
                     pass
-
             def uslugi(message):
                 if message.text == 'Мои хостинги 🗂':
                     for i in check:
@@ -260,7 +259,6 @@ def log(message):
                     markup_ru.add(lg1, lg2, lg3, lg4)
                     bot.send_message(message.chat.id, 'Возврат 🔙', reply_markup=markup_ru, parse_mode='html')
                     bot.register_next_step_handler(message, after_login)
-
             def doljniki(message):
                 def doljniki_domen(message):
                     if message.text == '60 дней':
@@ -510,14 +508,6 @@ def log(message):
                 markup.add(lg1, lg2, lg3, lg4, lg5)
                 bot.send_message(message.chat.id, 'Мои услуги 📊', reply_markup=markup)
                 bot.register_next_step_handler(message, uslugi)
-            elif message.text == 'Помощь 🆘':
-                markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-                lg1 = types.KeyboardButton('Техническому')
-                lg2 = types.KeyboardButton('Коммерческому')
-                lg3 = types.KeyboardButton('Возврат 🔙')
-                markup.add(lg1, lg2, lg3)
-                bot.send_message(message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-                bot.register_next_step_handler(message, helpp)
             elif message.text == 'Уведомления':
                 markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
                 lg1 = types.KeyboardButton('Домен')
@@ -1074,14 +1064,9 @@ def log_uz(message):
                 markup.add(lg1, lg2, lg3, lg4, lg5)
                 bot.send_message(message.chat.id, 'Мои услуги 📊', reply_markup=markup)
                 bot.register_next_step_handler(message, uslugi_uz)
-            elif message.text == 'Помощь 🆘':
-                markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-                lg1 = types.KeyboardButton('Техническому')
-                lg2 = types.KeyboardButton('Коммерческому')
-                lg3 = types.KeyboardButton('Возврат 🔙')
-                markup.add(lg1, lg2, lg3)
-                bot.send_message(message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-                # bot.register_next_step_handler(message, helpp)
+
+
+
             elif message.text == 'Уведомления':
                 markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
                 lg1 = types.KeyboardButton('Домен')
@@ -1389,6 +1374,13 @@ def callback(call):
             bot.send_message(call.message.chat.id,
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
+    elif call.data =='helpp':
+        markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        lg1 = types.KeyboardButton('Техническому')
+        lg2 = types.KeyboardButton('Коммерческому')
+        lg3 = types.KeyboardButton('Возврат 🔙')
+        markup.add(lg1, lg2, lg3)
+        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
                                  user='hostmasteruz_pbot',
