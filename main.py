@@ -1311,7 +1311,9 @@ def language(message):
 @bot.message_handler(content_types=['text'])
 def questions(message):
     if message.text == 'Домены':
-        bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof', )
+        bot.send_message(message.chat.id, '1. Как сменить NS записи у домена? \n'
+                                          '2. Как переоформить домен на другое имя? \n'
+                                          '3. Как продлить срок домена ?', )
 
 
 @bot.message_handler(content_types=['text'])
