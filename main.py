@@ -596,8 +596,9 @@ def log(message):
                 lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                                  url='https://hostmaster.uz/site/signup')
                 lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+                lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-                markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+                markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
                 bot_con = pymysql.connect(host='62.209.143.131',
                                           user='hostmasteruz_pbot',
                                           password='bcaxoZyAXDGc',
@@ -640,8 +641,10 @@ def log(message):
                 lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                                  url='https://hostmaster.uz/site/signup')
                 lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+                lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-                markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+
+                markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
                 bot.send_message(message.chat.id,
                                  "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                                  reply_markup=markup, parse_mode='html')
@@ -1571,9 +1574,9 @@ def callback(call):
         lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                          url='https://hostmaster.uz/site/signup')
         lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
-        lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-        markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
+
+        markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6)
         bot.send_message(call.message.chat.id,
                          "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                          reply_markup=markup_ru, parse_mode='html')
