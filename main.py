@@ -56,12 +56,27 @@ def send_welcome(message):
                                      url='https://t.me/hostmaster_support')
     lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                      url='https://hostmaster.uz/site/signup')
+    lg6 = types.InlineKeyboardButton('Помощь 🆘', callback_data='help')
 
-    markup.add(lg1, lg2, lg3, lg4, lg5)
+    markup.add(lg1, lg2, lg3, lg4, lg5,lg6)
     bot.send_message(message.chat.id,
                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                      reply_markup=markup, parse_mode='html')
     bot.send_message(332749197, text, parse_mode='html')
+
+
+
+@bot.message_handler(content_types=['text'])
+def help(message):
+    if message.text =='Помощь 🆘':
+        markup_help = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Техническая', callback_data='tech')
+        lg2 = types.InlineKeyboardButton('Коммерческая', callback_data='com')
+        lg3 = types.InlineKeyboardButton('Возврат', callback_data='back')
+        markup_help.add(lg1, lg2, lg3)
+        bot.send_message(message.chat.id,
+                         "К какому блок относится ваш вопрос? \n\n",
+                         reply_markup=markup_help, parse_mode='html')
 
 
 @bot.message_handler(content_types=['text'])
@@ -455,6 +470,7 @@ def log(message):
                 markup.add(lg1, lg2, lg3, lg4, lg5)
                 bot.send_message(message.chat.id, 'Мои услуги 📊', reply_markup=markup)
                 bot.register_next_step_handler(message, uslugi)
+
             elif message.text == 'Уведомления':
                 markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
                 lg1 = types.KeyboardButton('Домен')
