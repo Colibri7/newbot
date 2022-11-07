@@ -1396,10 +1396,8 @@ def callback(call):
         markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('Техническому')
         lg2 = types.KeyboardButton('Коммерческому')
-        lg3 = types.KeyboardButton('Связь с менеджером 👨🏻‍💻', callback_data='connect_admin',
-                                   url='https://t.me/hostmaster_support')
-        lg4 = types.KeyboardButton('Возврат 🔙')
-        markup_.add(lg1, lg2, lg3, lg4)
+
+        markup_.add(lg1, lg2)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup_)
         bot.register_next_step_handler(call.message, helpp_2)
 
