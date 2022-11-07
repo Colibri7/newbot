@@ -1375,22 +1375,56 @@ def callback(call):
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
     elif call.data == 'helpp':
-        def helpp_2(message):
-            if message.text == 'Техническому':
-                markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-                lg1 = types.KeyboardButton('1')
-                lg2 = types.KeyboardButton('2')
-                lg3 = types.KeyboardButton('3')
-                lg4 = types.KeyboardButton('4')
-                lg5 = types.KeyboardButton('5')
-                lg6 = types.KeyboardButton('6')
-                lg_meneger = types.KeyboardButton('Связь с менеджером 👨🏻‍💻', callback_data='connect_admin',
-                                                  url='https://t.me/hostmaster_support')
-                lg_back = types.KeyboardButton('Возврат 🔙')
-                markup_.add(lg1, lg2, lg3, lg4, lg5, lg6, lg_meneger, lg_back)
+        tg_con = pymysql.connect(host='62.209.143.131',
+                                 user='hostmasteruz_pbot',
+                                 password='bcaxoZyAXDGc',
+                                 database='hostmasteruz_bot',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor
+                                 )
+        min = tg_con.cursor()
+        min.execute(
+            "SELECT `tg_id` FROM sardorbot ")
 
-                bot.send_message(call.message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
-                                 reply_markup=markup_)
+        td_check = min.fetchall()
+        arr = []
+        for i in td_check:
+            arr.append(i["tg_id"])
+        if call.message.chat.id in arr:
+            bot_con = pymysql.connect(host='62.209.143.131',
+                                      user='hostmasteruz_pbot',
+                                      password='bcaxoZyAXDGc',
+                                      database='hostmasteruz_bot',
+                                      charset='utf8mb4',
+                                      cursorclass=pymysql.cursors.DictCursor
+                                      )
+            min = bot_con.cursor()
+            tg_id = call.message.chat.id
+
+            min.execute(
+                'SELECT `sardorbot`.`b_userid` FROM '
+                '`hostmasteruz_bot`.`sardorbot` WHERE '
+                '`hostmasteruz_bot`.`sardorbot`.`tg_id` = %(tg_id)s',
+                {'tg_id': tg_id})
+            check = min.fetchall()
+
+
+            def helpp_2(message):
+                if message.text == 'Техническому':
+                    markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+                    lg1 = types.KeyboardButton('1')
+                    lg2 = types.KeyboardButton('2')
+                    lg3 = types.KeyboardButton('3')
+                    lg4 = types.KeyboardButton('4')
+                    lg5 = types.KeyboardButton('5')
+                    lg6 = types.KeyboardButton('6')
+                    lg_meneger = types.KeyboardButton('Связь с менеджером 👨🏻‍💻', callback_data='connect_admin',
+                                                      url='https://t.me/hostmaster_support')
+                    lg_back = types.KeyboardButton('Возврат 🔙')
+                    markup_.add(lg1, lg2, lg3, lg4, lg5, lg6, lg_meneger, lg_back)
+
+                    bot.send_message(call.message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
+                                     reply_markup=markup_)
 
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('Техническому')
