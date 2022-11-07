@@ -95,9 +95,9 @@ def send_welcome(message):
     lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                      url='https://hostmaster.uz/site/signup')
     lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
-    lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='uz')
+    lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-    markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+    markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg6)
     bot.send_message(message.chat.id,
                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                      reply_markup=markup, parse_mode='html')
