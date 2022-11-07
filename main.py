@@ -1377,7 +1377,7 @@ def callback(call):
     elif call.data == 'helpp':
         def helpp_2(message):
             if message.text == 'Техническому':
-                markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+                markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
                 lg1 = types.KeyboardButton('1')
                 lg2 = types.KeyboardButton('2')
                 lg3 = types.KeyboardButton('3')
@@ -1387,9 +1387,10 @@ def callback(call):
                 lg_meneger = types.KeyboardButton('Связь с менеджером 👨🏻‍💻', callback_data='connect_admin',
                                                   url='https://t.me/hostmaster_support')
                 lg_back = types.KeyboardButton('Возврат 🔙')
-                markup.add(lg1, lg2, lg3, lg4, lg5, lg6, lg_meneger, lg_back)
+                markup_.add(lg1, lg2, lg3, lg4, lg5, lg6, lg_meneger, lg_back)
+
                 bot.send_message(call.message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
-                                 reply_markup=markup)
+                                 reply_markup=markup_)
 
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('Техническому')
@@ -1400,6 +1401,7 @@ def callback(call):
         markup.add(lg1, lg2, lg3, lg4)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
         bot.register_next_step_handler(call.message, helpp_2)
+
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
                                  user='hostmasteruz_pbot',
@@ -1573,7 +1575,6 @@ def callback(call):
                                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                                      reply_markup=markup, parse_mode='html')
 
-            # sad
 
             markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
             lg1 = types.KeyboardButton('Мои хостинги 🗂')
