@@ -1310,7 +1310,7 @@ def language(message):
 
 @bot.message_handler(content_types=['text'])
 def questions(message):
-    if message.text == '1':
+    if message.text == 'Домены':
         bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof', )
 
 
@@ -1384,14 +1384,12 @@ def callback(call):
         def helpp(message):
             if message.text == 'Техническому':
                 markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-                lg1 = types.KeyboardButton('1')
-                lg2 = types.KeyboardButton('2')
-                lg3 = types.KeyboardButton('3')
-                lg4 = types.KeyboardButton('4')
-                lg5 = types.KeyboardButton('5')
-                lg6 = types.KeyboardButton('6')
+                lg1 = types.KeyboardButton('Домены')
+                lg2 = types.KeyboardButton('VDS')
+                lg3 = types.KeyboardButton('Хостинг')
+                lg4 = types.KeyboardButton('DS')
                 lg6_back = types.KeyboardButton('Возврат')
-                markup_.add(lg1, lg2, lg3, lg4, lg5, lg6)
+                markup_.add(lg1, lg2, lg3, lg4, lg6_back)
 
                 bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
                                  reply_markup=markup_)
