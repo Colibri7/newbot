@@ -1308,6 +1308,12 @@ def language(message):
                          reply_markup=markup_ru, parse_mode='html')
 
 
+@bot.message_handler(content_types=['text'])
+def questions(message):
+    if message.text == '1':
+        bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof', )
+
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
     connection = pymysql.connect(host='62.209.143.131',
@@ -1384,11 +1390,13 @@ def callback(call):
                 lg4 = types.KeyboardButton('4')
                 lg5 = types.KeyboardButton('5')
                 lg6 = types.KeyboardButton('6')
-
+                lg6_back = types.KeyboardButton('Возврат')
                 markup_.add(lg1, lg2, lg3, lg4, lg5, lg6)
 
                 bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
                                  reply_markup=markup_)
+                bot.register_next_step_handler(call.message, questions)
+
         markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('Техническому')
         lg2 = types.KeyboardButton('Коммерческому')
@@ -1569,7 +1577,6 @@ def callback(call):
                     bot.send_message(message.chat.id,
                                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                                      reply_markup=markup, parse_mode='html')
-
 
             markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
             lg1 = types.KeyboardButton('Мои хостинги 🗂')
