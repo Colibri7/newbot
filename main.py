@@ -1392,14 +1392,14 @@ def callback(call):
         #             bot.send_message(call.message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
         #                              reply_markup=markup_)
 
-        markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('Техническому')
         lg2 = types.KeyboardButton('Коммерческому')
         lg3 = types.KeyboardButton('Связь с менеджером 👨🏻‍💻', callback_data='connect_admin',
                                    url='https://t.me/hostmaster_support')
         lg4 = types.KeyboardButton('Возврат 🔙')
-        markup.add(lg1, lg2, lg3, lg4)
-        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+        markup_.add(lg1, lg2, lg3, lg4)
+        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup_)
         # bot.register_next_step_handler(call.message, helpp_2)
 
     elif call.data == 'my_services':
