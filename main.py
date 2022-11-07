@@ -18,10 +18,6 @@ SQLALCHEMY_ENGINE_OPTIONS = {
 now = dt.now()
 
 
-
-
-
-
 def func(message):
     if message.text == 'Возврат 🔙':
         markup = types.InlineKeyboardMarkup(row_width=2)
@@ -97,15 +93,11 @@ def send_welcome(message):
     lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
     lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-    markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg6)
+    markup.add(lg1, lg2, lg3, lg4, lg5, lg6, lg7)
     bot.send_message(message.chat.id,
                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                      reply_markup=markup, parse_mode='html')
     bot.send_message(332749197, text, parse_mode='html')
-
-
-
-
 
 
 @bot.message_handler(content_types=['text'])
@@ -115,18 +107,20 @@ def log(message):
             def help(message):
                 def tech(message):
                     pass
-                if message.text =='Техническому':
+
+                if message.text == 'Техническому':
                     markup_ru = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, one_time_keyboard=True)
                     lg1 = types.KeyboardButton('Домен')
                     lg2 = types.KeyboardButton('VDS')
                     lg3 = types.KeyboardButton('DS')
                     lg4 = types.KeyboardButton('Хостинг')
                     lg5 = types.KeyboardButton('Возврат 🔙')
-                    markup_ru.add(lg1, lg2, lg3, lg4,lg5)
+                    markup_ru.add(lg1, lg2, lg3, lg4, lg5)
                     bot.send_message(message.chat.id, 'Возврат 🔙', reply_markup=markup_ru, parse_mode='html')
                     bot.register_next_step_handler(message, tech)
-                elif message.text =='Коммерческому':
+                elif message.text == 'Коммерческому':
                     pass
+
             def uslugi(message):
                 if message.text == 'Мои хостинги 🗂':
                     for i in check:
@@ -1550,7 +1544,6 @@ def callback(call):
                                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                                      reply_markup=markup, parse_mode='html')
 
-
             # sad
 
             markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
@@ -1847,9 +1840,6 @@ def job2():
 
     if day_of_month == 27:
         bot.send_message(332749197, 'hello')
-
-
-
 
 
 bot.polling(none_stop=True)
