@@ -1308,28 +1308,39 @@ def language(message):
                          reply_markup=markup_ru, parse_mode='html')
 
 
-@bot.message_handler(content_types=['text'])
-def questions(message):
-    if message.text == 'Домены':
-        bot.send_message(message.chat.id, '1. Как сменить NS записи у домена? \n'
-                                          '2. Как переоформить домен на другое имя? \n'
-                                          '3. Как продлить срок домена ?', )
+# @bot.message_handler(content_types=['text'])
+# def questions(message):
+#     if message.text == 'Домены':
+#         bot.send_message(message.chat.id, '1. Как сменить NS записи у домена? \n'
+#                                           '2. Как переоформить домен на другое имя? \n'
+#                                           '3. Как продлить срок домена ?', )
 
 
 @bot.message_handler(content_types=['text'])
 def helpp(message):
     if message.text == 'Техническому':
-        markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-        lg1 = types.KeyboardButton('Домены')
-        lg2 = types.KeyboardButton('VDS')
-        lg3 = types.KeyboardButton('Хостинг')
-        lg4 = types.KeyboardButton('DS')
-        lg6_back = types.KeyboardButton('Возврат')
-        markup_.add(lg1, lg2, lg3, lg4, lg6_back)
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
+        lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
+        lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
+        lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
 
-        bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
-                         reply_markup=markup_)
-        bot.register_next_step_handler(message, questions)
+        markup.add(lg1, lg2, lg3, lg4)
+        bot.send_message(message.chat.id,
+                         "К какой части относится ваш вопрос ? \n\n",
+                         reply_markup=markup, parse_mode='html')
+
+        # markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        # lg1 = types.KeyboardButton('Домены')
+        # lg2 = types.KeyboardButton('VDS')
+        # lg3 = types.KeyboardButton('Хостинг')
+        # lg4 = types.KeyboardButton('DS')
+        # lg6_back = types.KeyboardButton('Возврат')
+        # markup_.add(lg1, lg2, lg3, lg4, lg6_back)
+        #
+        # bot.send_message(message.chat.id, '1. jsbajfasldf \n\n2.sahdfjashfi\n\n3.ijfioasjdof',
+        #                  reply_markup=markup_)
+        # bot.register_next_step_handler(message, questions)
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -1407,7 +1418,11 @@ def callback(call):
         markup_.add(lg1, lg2)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup_)
         bot.register_next_step_handler(call.message, helpp)
+    elif call.data == 'd':
 
+        bot.send_message(call.message.chat.id, '1. Как сменить NS записи у домена? \n'
+                                          '2. Как переоформить домен на другое имя? \n'
+                                          '3. Как продлить срок домена ?', )
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
                                  user='hostmasteruz_pbot',
