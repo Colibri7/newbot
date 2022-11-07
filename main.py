@@ -29,8 +29,9 @@ def func(message):
         lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                          url='https://hostmaster.uz/site/signup')
         lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+        lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-        markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+        markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
         bot.send_message(message.chat.id,
                          "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                          reply_markup=markup, parse_mode='html')
@@ -91,9 +92,10 @@ def send_welcome(message):
     lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                      url='https://hostmaster.uz/site/signup')
     lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+    lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
 
-    markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+    markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
     bot.send_message(message.chat.id,
                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                      reply_markup=markup, parse_mode='html')
@@ -536,8 +538,9 @@ def log(message):
                 lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                                  url='https://hostmaster.uz/site/signup')
                 lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+                lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-                markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+                markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
                 bot.send_message(message.chat.id,
                                  "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                                  reply_markup=markup, parse_mode='html')
@@ -669,8 +672,9 @@ def log(message):
         lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                          url='https://hostmaster.uz/site/signup')
         lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+        lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-        markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+        markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
         bot.send_message(message.chat.id,
                          "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                          reply_markup=markup, parse_mode='html')
@@ -715,8 +719,9 @@ def log(message):
             lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                              url='https://hostmaster.uz/site/signup')
             lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+            lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-            markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6)
+            markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
             bot.send_message(message.chat.id,
                              "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                              reply_markup=markup_ru, parse_mode='html')
@@ -1070,6 +1075,7 @@ def log_uz(message):
                 markup.add(lg1, lg2, lg3, lg4, lg5)
                 bot.send_message(message.chat.id, 'Мои услуги 📊', reply_markup=markup)
                 bot.register_next_step_handler(message, uslugi_uz)
+
             elif message.text == 'Уведомления':
                 markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
                 lg1 = types.KeyboardButton('Домен')
@@ -1089,8 +1095,9 @@ def log_uz(message):
                 lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                                  url='https://hostmaster.uz/site/signup')
                 lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+                lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-                markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+                markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
                 bot.send_message(message.chat.id,
                                  "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                                  reply_markup=markup, parse_mode='html')
@@ -1302,8 +1309,9 @@ def language(message):
         lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                          url='https://hostmaster.uz/site/signup')
         lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+        lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-        markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6)
+        markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
         bot.send_message(message.chat.id,
                          "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                          reply_markup=markup_ru, parse_mode='html')
@@ -1541,8 +1549,9 @@ def callback(call):
                     lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                                      url='https://hostmaster.uz/site/signup')
                     lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+                    lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
-                    markup.add(lg1, lg2, lg3, lg4, lg5, lg6)
+                    markup.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
                     bot.send_message(message.chat.id,
                                      "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                                      reply_markup=markup, parse_mode='html')
@@ -1574,9 +1583,10 @@ def callback(call):
         lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
                                          url='https://hostmaster.uz/site/signup')
         lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+        lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='help')
 
 
-        markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6)
+        markup_ru.add(lg1, lg2, lg3, lg4, lg5, lg6,lg7)
         bot.send_message(call.message.chat.id,
                          "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                          reply_markup=markup_ru, parse_mode='html')
