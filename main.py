@@ -1408,18 +1408,18 @@ def callback(call):
     #     bot.send_message(call.message.chat.id,
     #                      "К какой услуге относится ваш вопрос ? \n\n",
     #                      reply_markup=markup, parse_mode='html')
-    # elif call.data == 'helpp':
-    #     # markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-    #     # lg1 = types.KeyboardButton('Техническому')
-    #     # lg2 = types.KeyboardButton('Коммерческому')
-    #     # bot.register_next_step_handler(call.message, helpp)
-    #     # bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup,
-    #     #                  parse_mode='HTML')
-    #     markup = types.InlineKeyboardMarkup(row_width=2)
-    #     lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
-    #     lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
-    #     markup.add(lg1, lg2)
-    #     bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+    elif call.data == 'helpp':
+        # markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        # lg1 = types.KeyboardButton('Техническому')
+        # lg2 = types.KeyboardButton('Коммерческому')
+        # bot.register_next_step_handler(call.message, helpp)
+        # bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup,
+        #                  parse_mode='HTML')
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
+        lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
+        markup.add(lg1, lg2)
+        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
 
 
     # elif call.data == 'd':
