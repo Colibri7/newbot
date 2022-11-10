@@ -1412,7 +1412,7 @@ def callback(call):
         lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
         # bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-        bot.edit_message_reply_markup(call.message.chat.id, reply_markup=markup)
+        bot.editMessageText(call.message.chat.id, reply_markup=markup)
 
     elif call.data == 'd':
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
