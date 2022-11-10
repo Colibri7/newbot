@@ -1411,7 +1411,17 @@ def callback(call):
         lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
         bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+    elif call.data == 'tech':
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
+        lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
+        lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
+        lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
 
+        markup.add(lg1, lg2, lg3, lg4)
+        bot.send_message(call.message.chat.id,
+                         "К какой части относится ваш вопрос ? \n\n",
+                         reply_markup=markup, parse_mode='html')
     elif call.data == 'd':
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('1')
