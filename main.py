@@ -1309,19 +1309,19 @@ def language(message):
                          reply_markup=markup_ru, parse_mode='html')
 
 
-@bot.message_handler(content_types=['text'])
-def helpp(message):
-    if message.text == 'Техническому':
-        markup = types.InlineKeyboardMarkup(row_width=2)
-        lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
-        lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
-        lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
-        lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
-
-        markup.add(lg1, lg2, lg3, lg4)
-        bot.send_message(message.chat.id,
-                         "К какой части относится ваш вопрос ? \n\n",
-                         reply_markup=markup, parse_mode='html')
+# @bot.message_handler(content_types=['text'])
+# def helpp(message):
+#     if message.text == 'Техническому':
+#         markup = types.InlineKeyboardMarkup(row_width=2)
+#         lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
+#         lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
+#         lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
+#         lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
+#
+#         markup.add(lg1, lg2, lg3, lg4)
+#         bot.send_message(message.chat.id,
+#                          "К какой части относится ваш вопрос ? \n\n",
+#                          reply_markup=markup, parse_mode='html')
 
 
 @bot.message_handler(content_types=['text'])
@@ -1330,8 +1330,7 @@ def answers(message):
         bot.send_message(message.chat.id, text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                          parse_mode='html')
         bot.register_next_step_handler(message.chat.id, answers)
-    elif message.text == 'Возврат':
-        bot.register_next_step_handler(message.chat.id, callback())
+
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -1400,6 +1399,16 @@ def callback(call):
             bot.send_message(call.message.chat.id,
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
+    elif call.data =='tech':
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
+        lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
+        lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
+        lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
+        markup.add(lg1, lg2, lg3, lg4)
+        bot.send_message(call.message.chat.id,
+                         "К какой услуге относится ваш вопрос ? \n\n",
+                         reply_markup=markup, parse_mode='html')
     elif call.data == 'helpp':
         # markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         # lg1 = types.KeyboardButton('Техническому')
@@ -1411,8 +1420,8 @@ def callback(call):
         lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
         lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
-        # bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-        bot.editMessageText(call.message.chat.id, reply_markup=markup)
+        bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+
 
     elif call.data == 'd':
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
