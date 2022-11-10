@@ -4,6 +4,7 @@ from threading import Thread
 import schedule
 from datetime import datetime as dt
 import telebot
+from pyrogram.types import update
 from telebot import types
 import pymysql
 
@@ -1410,7 +1411,8 @@ def callback(call):
         lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
         lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
-        bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+        # bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+        bot.edit_message_reply_markup(call.message.chat.id, reply_markup=markup)
 
     elif call.data == 'd':
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
