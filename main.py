@@ -1328,8 +1328,9 @@ def answers(message):
     if message.text == '1':
         bot.send_message(message.chat.id, text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                          parse_mode='html')
+        bot.register_next_step_handler(message.chat.id, answers)
     elif message.text == 'Возврат':
-        bot.register_next_step_handler(message.chat.id, callback)
+        bot.register_next_step_handler(message.chat.id, callback())
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -1399,13 +1400,18 @@ def callback(call):
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
     elif call.data == 'helpp':
-        markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-        lg1 = types.KeyboardButton('Техническому')
-        lg2 = types.KeyboardButton('Коммерческому')
-
+        # markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        # lg1 = types.KeyboardButton('Техническому')
+        # lg2 = types.KeyboardButton('Коммерческому')
+        # bot.register_next_step_handler(call.message, helpp)
+        # bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup,
+        #                  parse_mode='HTML')
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
+        lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
-        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-        bot.register_next_step_handler(call.message, helpp)
+        bot.edit_message_text(call.message.chat.id,reply_markup=markup(), parse_mode='HTML' )
+
     elif call.data == 'd':
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('1')
@@ -1637,7 +1643,6 @@ def callback(call):
         bot.send_message(call.message.chat.id,
                          "<b>Hostmaster</b> botiga xush kelibsiz.\nXosting, VDS, serverlar, domenlar O'zbekistonda, Toshkentda.\n\n",
                          reply_markup=markup_uz, parse_mode='html')
-
     elif call.data == "ro'yxatdan_o'tish":
         mark = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, one_time_keyboard=True)
         menu = types.KeyboardButton('Qaytish 🔙')
