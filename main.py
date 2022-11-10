@@ -1410,8 +1410,7 @@ def callback(call):
         lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
         lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
-
-        bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup(), parse_mode='HTML')
+        bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
 
     elif call.data == 'd':
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
