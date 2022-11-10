@@ -4,6 +4,7 @@ from threading import Thread
 import schedule
 from datetime import datetime as dt
 import telebot
+from pyrogram.enums import ParseMode
 from telebot import types
 import pymysql
 
@@ -1343,6 +1344,13 @@ def helpp(message):
         # bot.register_next_step_handler(message, questions)
 
 
+@bot.message_handler(content_types=['text'])
+def ns(message):
+    if message.text == '1':
+        bot.send_message(message.chat.id, text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
+                         parse_mode=ParseMode.HTML)
+
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
     connection = pymysql.connect(host='62.209.143.131',
@@ -1429,6 +1437,7 @@ def callback(call):
         bot.send_message(call.message.chat.id, '1. Как сменить NS записи у домена? \n'
                                                '2. Как переоформить домен на другое имя? \n'
                                                '3. Как продлить срок домена ?', reply_markup=markup_)
+        bot.register_next_step_handler(call.message, ns)
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
                                  user='hostmasteruz_pbot',
