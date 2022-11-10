@@ -1328,9 +1328,8 @@ def answers(message):
     if message.text == '1':
         bot.send_message(message.chat.id, text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                          parse_mode='html')
-        bot.register_next_step_handler(message.chat.id, answers)
-    elif message.text == 'Возврат':
-        bot.register_next_step_handler(message.chat.id, callback())
+    bot.register_next_step_handler(message.chat.id, answers)
+
 
 
 @bot.callback_query_handler(func=lambda call: True)
