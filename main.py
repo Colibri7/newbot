@@ -1419,10 +1419,16 @@ def callback(call):
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup_)
         bot.register_next_step_handler(call.message, helpp)
     elif call.data == 'd':
-
+        markup_ = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        lg1 = types.KeyboardButton('1')
+        lg2 = types.KeyboardButton('2')
+        lg3 = types.KeyboardButton('3')
+        lg4 = types.KeyboardButton('4')
+        markup_.add(lg1, lg2, lg3, lg4)
+        bot.send_message(call.message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
         bot.send_message(call.message.chat.id, '1. Как сменить NS записи у домена? \n'
-                                          '2. Как переоформить домен на другое имя? \n'
-                                          '3. Как продлить срок домена ?', )
+                                               '2. Как переоформить домен на другое имя? \n'
+                                               '3. Как продлить срок домена ?', reply_markup=markup_)
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
                                  user='hostmasteruz_pbot',
