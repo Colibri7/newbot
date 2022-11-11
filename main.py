@@ -1403,7 +1403,7 @@ def callback(call):
                                               '2. Как переоформить домен на другое имя? \n'
                                               '3. Как продлить срок домена ?', reply_markup=markup_dom)
 
-            bot.register_next_step_handler(message, answers)
+            bot.register_next_step_handler(call.message, answers)
     elif call.data == 'tech':
         markup_us = types.InlineKeyboardMarkup(row_width=2)
         lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
