@@ -1334,7 +1334,7 @@ def qust(message):
 
     bot.register_next_step_handler(message, answers)
 
-
+@bot.message_handler(content_types=['text'])
 def tech_com(message):
     markup = types.ReplyKeyboardMarkup(row_width=2)
     lg1 = types.KeyboardButton('Домены')
