@@ -1309,6 +1309,14 @@ def language(message):
 
 
 @bot.message_handler(content_types=['text'])
+def chat(message):
+    if message.chat.id=='332749197' and message=='Принять':
+        bot.send_message(message.chat.id,
+                         text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
+                         parse_mode='html')
+
+
+@bot.message_handler(content_types=['text'])
 def answers(message):
     if message.text == '1':
         bot.send_message(message.chat.id,
@@ -1357,6 +1365,7 @@ def qust(message):
         accept = types.KeyboardButton('Принять')
         mark_for_admin.add(accept)
         bot.send_message(332749197, text,  reply_markup=mark_for_admin, parse_mode='html')
+        bot.register_next_step_handler(message, chat)
 
     elif message.text == 'Возврат':
         markup = types.InlineKeyboardMarkup(row_width=2)
