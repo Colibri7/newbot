@@ -1332,7 +1332,7 @@ def qust(message):
                                           '2. Как переоформить домен на другое имя? \n'
                                           '3. Как продлить срок домена ?', reply_markup=markup)
 
-        bot.register_next_step_handler(message, answers)
+    bot.register_next_step_handler(message, answers)
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -1414,7 +1414,6 @@ def callback(call):
         lg2 = types.KeyboardButton('Хостинги', )
         lg3 = types.KeyboardButton('VDS', )
         lg4 = types.KeyboardButton('DS', )
-
         markup.add(lg1, lg2, lg3, lg4)
         bot.send_message(call.message.chat.id,
                          "К какой части относится ваш вопрос ? \n\n",
