@@ -1334,7 +1334,7 @@ def qust(message):
         bot.register_next_step_handler(message, answers)
 
 @bot.message_handler(content_types=['text'])
-def types(message):
+def tip(message):
     if message.text == 'Техническому':
         markup = types.ReplyKeyboardMarkup(row_width=2)
         lg1 = types.KeyboardButton('Домены', )
@@ -1416,18 +1416,13 @@ def callback(call):
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
     elif call.data == 'helpp':
-        # markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-        # lg1 = types.KeyboardButton('Техническому')
-        # lg2 = types.KeyboardButton('Коммерческому')
-        # bot.register_next_step_handler(call.message, helpp)
-        # bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup,
-        #                  parse_mode='HTML')
+
         markup = types.InlineKeyboardMarkup(row_width=2)
         lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
         lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-        bot.register_next_step_handler(call.message, types)
+        bot.register_next_step_handler(call.message, tip)
     # elif call.data == 'tech':
     #     markup = types.InlineKeyboardMarkup(row_width=2)
     #     lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
