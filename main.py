@@ -1308,23 +1308,45 @@ def language(message):
                          reply_markup=markup_ru, parse_mode='html')
 
 
-@bot.message_handler(content_types=['text'])
-def helpp(message):
+def answers(message):
+    if message.text == '1':
+        bot.send_message(message.chat.id,
+                         text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
+                         parse_mode='html')
+        bot.register_next_step_handler(message.chat.id, answers)
+
+
+
+def qust(message):
+    if message.text =='Домены':
+        markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        lg1 = types.KeyboardButton('1')
+        lg2 = types.KeyboardButton('2')
+        lg3 = types.KeyboardButton('3')
+        lg4 = types.KeyboardButton('4')
+        lg5 = types.KeyboardButton('Возврат')
+        markup.add(lg1, lg2, lg3, lg4, lg5)
+        bot.send_message(message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
+        bot.send_message(message.chat.id, '1. Как сменить NS записи у домена? \n'
+                                          '2. Как переоформить домен на другое имя? \n'
+                                          '3. Как продлить срок домена ?', reply_markup=markup)
+
+        bot.register_next_step_handler(message, answers)
+
+
+def types(message):
     if message.text == 'Техническому':
-        markup = types.InlineKeyboardMarkup(row_width=2)
-        lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
-        lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
-        lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
-        lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
+        markup = types.ReplyKeyboardMarkup(row_width=2)
+        lg1 = types.KeyboardButton('Домены', )
+        lg2 = types.KeyboardButton('Хостинги', )
+        lg3 = types.KeyboardButton('VDS', )
+        lg4 = types.KeyboardButton('DS', )
 
         markup.add(lg1, lg2, lg3, lg4)
         bot.send_message(message.chat.id,
                          "К какой части относится ваш вопрос ? \n\n",
                          reply_markup=markup, parse_mode='html')
-
-
-
-
+        bot.register_next_step_handler(message, qust)
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -1404,53 +1426,35 @@ def callback(call):
         lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
         lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup.add(lg1, lg2)
-        bot.send_message(call.message.chat.id,'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-    elif call.data == 'tech':
-        markup = types.InlineKeyboardMarkup(row_width=2)
-        lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
-        lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
-        lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
-        lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
-
-        markup.add(lg1, lg2, lg3, lg4)
-        bot.send_message(call.message.chat.id,
-                         "К какой части относится ваш вопрос ? \n\n",
-                         reply_markup=markup, parse_mode='html')
-    elif call.data == 'd':
-        def answers(message):
-            if message.text == '1':
-                bot.send_message(message.chat.id,
-                                 text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
-                                 parse_mode='html')
-                bot.register_next_step_handler(message.chat.id, answers)
-
-
-            elif message.text == 'Возврат':
-                markup = types.InlineKeyboardMarkup(row_width=2)
-                lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
-                lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
-                lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
-                lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
-
-                markup.add(lg1, lg2, lg3, lg4)
-                bot.send_message(message.chat.id,
-                                 "К какой части относится ваш вопрос ? \n\n",
-                                 reply_markup=markup, parse_mode='html')
-
-
-        markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-        lg1 = types.KeyboardButton('1')
-        lg2 = types.KeyboardButton('2')
-        lg3 = types.KeyboardButton('3')
-        lg4 = types.KeyboardButton('4')
-        lg5 = types.KeyboardButton('Возврат')
-        markup.add(lg1, lg2, lg3, lg4, lg5)
-        bot.send_message(call.message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
-        bot.send_message(call.message.chat.id, '1. Как сменить NS записи у домена? \n'
-                                               '2. Как переоформить домен на другое имя? \n'
-                                               '3. Как продлить срок домена ?', reply_markup=markup)
-
-        bot.register_next_step_handler(call.message, answers)
+        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+        bot.register_next_step_handler(call.message, types)
+    # elif call.data == 'tech':
+    #     markup = types.InlineKeyboardMarkup(row_width=2)
+    #     lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
+    #     lg2 = types.InlineKeyboardButton('Хостинги', callback_data='h')
+    #     lg3 = types.InlineKeyboardButton('VDS', callback_data='v')
+    #     lg4 = types.InlineKeyboardButton('DS', callback_data='ds')
+    #
+    #     markup.add(lg1, lg2, lg3, lg4)
+    #     bot.send_message(call.message.chat.id,
+    #                      "К какой части относится ваш вопрос ? \n\n",
+    #                      reply_markup=markup, parse_mode='html')
+    # elif call.data == 'd':
+    #
+    #
+    #     markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+    #     lg1 = types.KeyboardButton('1')
+    #     lg2 = types.KeyboardButton('2')
+    #     lg3 = types.KeyboardButton('3')
+    #     lg4 = types.KeyboardButton('4')
+    #     lg5 = types.KeyboardButton('Возврат')
+    #     markup.add(lg1, lg2, lg3, lg4, lg5)
+    #     bot.send_message(call.message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
+    #     bot.send_message(call.message.chat.id, '1. Как сменить NS записи у домена? \n'
+    #                                            '2. Как переоформить домен на другое имя? \n'
+    #                                            '3. Как продлить срок домена ?', reply_markup=markup)
+    #
+    #     bot.register_next_step_handler(call.message, answers)
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
                                  user='hostmasteruz_pbot',
