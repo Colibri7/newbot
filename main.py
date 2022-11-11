@@ -1375,46 +1375,49 @@ def callback(call):
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
     elif call.data == 'helpp':
-        def tech_com(message):
-            def qust(message):
-                def answers(message):
-                    if message.text == '1':
-                        bot.send_message(message.chat.id,
-                                         text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
-                                         parse_mode='html')
-                        bot.register_next_step_handler(message.chat.id, answers)
 
-                if message.text == 'Домены':
-                    markup_dom = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-                    lg1 = types.KeyboardButton('1')
-                    lg2 = types.KeyboardButton('2')
-                    lg3 = types.KeyboardButton('3')
-                    lg4 = types.KeyboardButton('4')
-                    lg5 = types.KeyboardButton('Возврат')
-                    markup_dom.add(lg1, lg2, lg3, lg4, lg5)
-                    bot.send_message(message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
-                    bot.send_message(message.chat.id, '1. Как сменить NS записи у домена? \n'
-                                                      '2. Как переоформить домен на другое имя? \n'
-                                                      '3. Как продлить срок домена ?', reply_markup=markup_dom)
 
-                    bot.register_next_step_handler(message, answers)
-            if message.text == 'Техническому':
-                markup_us = types.ReplyKeyboardMarkup(row_width=2)
-                lg1 = types.KeyboardButton('Домены')
-                lg2 = types.KeyboardButton('Хостинги')
-                lg3 = types.KeyboardButton('VDS', )
-                lg4 = types.KeyboardButton('DS', )
-                markup_us.add(lg1, lg2, lg3, lg4)
-                bot.send_message(message.chat.id,
-                                 "К какой части относится ваш вопрос ? \n\n",
-                                 reply_markup=markup_us, parse_mode='html')
-                bot.register_next_step_handler(message.chat.id, qust)
-        markup_tech = types.ReplyKeyboardMarkup(row_width=2)
-        lg1 = types.KeyboardButton('Техническому')
-        lg2 = types.KeyboardButton('Коммерческому')
+
+        markup_tech = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
+        lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
         markup_tech.add(lg1, lg2)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup_tech)
-        bot.register_next_step_handler(call.message.chat.id, tech_com)
+
+    elif call.data == 'tech':
+        def qust(message):
+            def answers(message):
+                if message.text == '1':
+                    bot.send_message(message.chat.id,
+                                     text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
+                                     parse_mode='html')
+                    bot.register_next_step_handler(message.chat.id, answers)
+
+            if message.text == 'Домены':
+                markup_dom = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+                lg1 = types.KeyboardButton('1')
+                lg2 = types.KeyboardButton('2')
+                lg3 = types.KeyboardButton('3')
+                lg4 = types.KeyboardButton('4')
+                lg5 = types.KeyboardButton('Возврат')
+                markup_dom.add(lg1, lg2, lg3, lg4, lg5)
+                bot.send_message(message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
+                bot.send_message(message.chat.id, '1. Как сменить NS записи у домена? \n'
+                                                  '2. Как переоформить домен на другое имя? \n'
+                                                  '3. Как продлить срок домена ?', reply_markup=markup_dom)
+
+                bot.register_next_step_handler(message, answers)
+
+        markup_us = types.ReplyKeyboardMarkup(row_width=2)
+        lg1 = types.KeyboardButton('Домены')
+        lg2 = types.KeyboardButton('Хостинги')
+        lg3 = types.KeyboardButton('VDS', )
+        lg4 = types.KeyboardButton('DS', )
+        markup_us.add(lg1, lg2, lg3, lg4)
+        bot.send_message(call.message.chat.id,
+                         "К какой части относится ваш вопрос ? \n\n",
+                         reply_markup=markup_us, parse_mode='html')
+        bot.register_next_step_handler(call.message.chat.id, qust)
 
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
