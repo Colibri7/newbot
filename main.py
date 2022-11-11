@@ -1418,7 +1418,7 @@ def callback(call):
 
         markup.add(lg1, lg2, lg3)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
-        bot.register_next_step_handler(call.message.chat.id, ex1)
+        bot.register_next_step_handler(call.message, ex1)
 
     # elif call.data == 'tech':
     #     def qust(message):
