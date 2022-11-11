@@ -1406,10 +1406,10 @@ def callback(call):
                 lg3 = types.KeyboardButton('VDS', )
                 lg4 = types.KeyboardButton('DS', )
                 markup_us.add(lg1, lg2, lg3, lg4)
-                bot.send_message(call.message.chat.id,
+                bot.send_message(message.chat.id,
                                  "К какой части относится ваш вопрос ? \n\n",
                                  reply_markup=markup_us, parse_mode='html')
-                bot.register_next_step_handler(call.message.chat.id, qust)
+                bot.register_next_step_handler(message.chat.id, qust)
 
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('Техническому')
