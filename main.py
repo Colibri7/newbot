@@ -1422,6 +1422,7 @@ def callback(call):
                 bot.send_message(message.chat.id,
                                  text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                                  parse_mode='html')
+                bot.register_next_step_handler(message.chat.id, answers)
 
             elif message.text == 'Возврат':
                 markup = types.InlineKeyboardMarkup(row_width=2)
@@ -1434,7 +1435,7 @@ def callback(call):
                 bot.send_message(message.chat.id,
                                  "К какой части относится ваш вопрос ? \n\n",
                                  reply_markup=markup, parse_mode='html')
-            bot.register_next_step_handler(message.chat.id, answers)
+                bot.register_next_step_handler(message.chat.id, answers)
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.KeyboardButton('1')
         lg2 = types.KeyboardButton('2')
