@@ -1310,7 +1310,7 @@ def language(message):
 
 @bot.message_handler(content_types=['text'])
 def chat(message):
-    if message.text == 'Принять':
+    if message.text == 'Принять' and message.chat.id=='332749197':
         bot.send_message(message.chat.id,
                          text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                          parse_mode='html')
