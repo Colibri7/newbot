@@ -1353,7 +1353,10 @@ def qust(message):
         lg1 = types.KeyboardButton('Возврат')
         markup_dom.add(lg1)
         bot.send_message(message.chat.id, 'Ожидайте ответ от админа...')
-        bot.send_message(332749197, text, parse_mode='html')
+        mark_for_admin = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+        accept = types.KeyboardButton('Принять')
+        mark_for_admin.add(accept)
+        bot.send_message(332749197, text,  reply_markup=mark_for_admin, parse_mode='html')
 
     elif message.text == 'Возврат':
         markup = types.InlineKeyboardMarkup(row_width=2)
