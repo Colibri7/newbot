@@ -1307,7 +1307,7 @@ def language(message):
                          "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
                          reply_markup=markup_ru, parse_mode='html')
 
-
+@bot.message_handler(content_types=['text'])
 def answers(message):
     if message.text == '1':
         bot.send_message(message.chat.id,
@@ -1316,7 +1316,7 @@ def answers(message):
         bot.register_next_step_handler(message.chat.id, answers)
 
 
-
+@bot.message_handler(content_types=['text'])
 def qust(message):
     if message.text =='Домены':
         markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
@@ -1333,7 +1333,7 @@ def qust(message):
 
         bot.register_next_step_handler(message, answers)
 
-
+@bot.message_handler(content_types=['text'])
 def types(message):
     if message.text == 'Техническому':
         markup = types.ReplyKeyboardMarkup(row_width=2)
