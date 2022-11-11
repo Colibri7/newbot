@@ -1399,16 +1399,17 @@ def callback(call):
 
                     bot.register_next_step_handler(message, answers)
 
-            markup = types.ReplyKeyboardMarkup(row_width=2)
-            lg1 = types.KeyboardButton('Домены')
-            lg2 = types.KeyboardButton('Хостинги')
-            lg3 = types.KeyboardButton('VDS', )
-            lg4 = types.KeyboardButton('DS', )
-            markup.add(lg1, lg2, lg3, lg4)
-            bot.send_message(message.chat.id,
-                             "К какой части относится ваш вопрос ? \n\n",
-                             reply_markup=markup, parse_mode='html')
-            bot.register_next_step_handler(message.chat.id, qust)
+            if message.text == 'Техническому':
+                markup = types.ReplyKeyboardMarkup(row_width=2)
+                lg1 = types.KeyboardButton('Домены')
+                lg2 = types.KeyboardButton('Хостинги')
+                lg3 = types.KeyboardButton('VDS', )
+                lg4 = types.KeyboardButton('DS', )
+                markup.add(lg1, lg2, lg3, lg4)
+                bot.send_message(message.chat.id,
+                                 "К какой части относится ваш вопрос ? \n\n",
+                                 reply_markup=markup, parse_mode='html')
+                bot.register_next_step_handler(message.chat.id, qust)
 
         markup = types.ReplyKeyboardMarkup(row_width=2)
         lg1 = types.KeyboardButton('Техническому')
