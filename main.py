@@ -1385,37 +1385,35 @@ def callback(call):
                         bot.register_next_step_handler(message.chat.id, answers)
 
                 if message.text == 'Домены':
-                    markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+                    markup_dom = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
                     lg1 = types.KeyboardButton('1')
                     lg2 = types.KeyboardButton('2')
                     lg3 = types.KeyboardButton('3')
                     lg4 = types.KeyboardButton('4')
                     lg5 = types.KeyboardButton('Возврат')
-                    markup.add(lg1, lg2, lg3, lg4, lg5)
+                    markup_dom.add(lg1, lg2, lg3, lg4, lg5)
                     bot.send_message(message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
                     bot.send_message(message.chat.id, '1. Как сменить NS записи у домена? \n'
                                                       '2. Как переоформить домен на другое имя? \n'
-                                                      '3. Как продлить срок домена ?', reply_markup=markup)
+                                                      '3. Как продлить срок домена ?', reply_markup=markup_dom)
 
                     bot.register_next_step_handler(message, answers)
-
             if message.text == 'Техническому':
-                markup = types.ReplyKeyboardMarkup(row_width=2)
+                markup_us = types.ReplyKeyboardMarkup(row_width=2)
                 lg1 = types.KeyboardButton('Домены')
                 lg2 = types.KeyboardButton('Хостинги')
                 lg3 = types.KeyboardButton('VDS', )
                 lg4 = types.KeyboardButton('DS', )
-                markup.add(lg1, lg2, lg3, lg4)
+                markup_us.add(lg1, lg2, lg3, lg4)
                 bot.send_message(message.chat.id,
                                  "К какой части относится ваш вопрос ? \n\n",
-                                 reply_markup=markup, parse_mode='html')
+                                 reply_markup=markup_us, parse_mode='html')
                 bot.register_next_step_handler(message.chat.id, qust)
-
-        markup = types.ReplyKeyboardMarkup(row_width=2)
+        markup_tech = types.ReplyKeyboardMarkup(row_width=2)
         lg1 = types.KeyboardButton('Техническому')
         lg2 = types.KeyboardButton('Коммерческому')
-        markup.add(lg1, lg2)
-        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+        markup_tech.add(lg1, lg2)
+        bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup_tech)
         bot.register_next_step_handler(call.message.chat.id, tech_com)
 
     elif call.data == 'my_services':
