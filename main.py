@@ -1375,8 +1375,7 @@ def callback(call):
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
     elif call.data == 'helpp':
-
-        markup = types.InlineKeyboardMarkup(row_width=2, resize_keyboard=True)
+        markup = types.InlineKeyboardMarkup(row_width=2)
         lg1 = types.InlineKeyboardButton('Техническому',callback_data='tech')
         lg2 = types.InlineKeyboardButton('Коммерческому',callback_data='com')
         lg3 = types.InlineKeyboardButton('Возврат 🔙',callback_data='back')
