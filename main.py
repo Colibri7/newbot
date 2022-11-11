@@ -1383,7 +1383,7 @@ def callback(call):
                             bot.send_message(message.chat.id,
                                              text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                                              parse_mode='html')
-                            bot.register_next_step_handler(message.chat.id, answers)
+                            bot.register_next_step_handler(message, answers)
 
                     if message.text == 'Домены':
                         markup_dom = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
