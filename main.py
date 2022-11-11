@@ -1344,6 +1344,14 @@ def qust(message):
                                           '3. Как продлить срок домена ?', reply_markup=markup_dom)
 
         bot.register_next_step_handler(message, answers)
+    elif message.text=='Возврат':
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
+        lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='com')
+        lg3 = types.InlineKeyboardButton('Возврат 🔙', callback_data='back')
+
+        markup.add(lg1, lg2, lg3)
+        bot.send_message(message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -1426,9 +1434,10 @@ def callback(call):
         markup_us = types.ReplyKeyboardMarkup(row_width=2)
         lg1 = types.KeyboardButton('Домены')
         lg2 = types.KeyboardButton('Хостинги')
-        lg3 = types.KeyboardButton('VDS', )
-        lg4 = types.KeyboardButton('DS', )
-        markup_us.add(lg1, lg2, lg3, lg4)
+        lg3 = types.KeyboardButton('VDS')
+        lg4 = types.KeyboardButton('DS')
+        lg5 = types.KeyboardButton('Возврат')
+        markup_us.add(lg1, lg2, lg3, lg4,lg5)
         bot.send_message(call.message.chat.id,
                          "К какой части относится ваш вопрос ? \n\n",
                          reply_markup=markup_us, parse_mode='html')
