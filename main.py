@@ -1335,6 +1335,18 @@ def qust(message):
     bot.register_next_step_handler(message, answers)
 
 
+def tech_com(message):
+    markup = types.ReplyKeyboardMarkup(row_width=2)
+    lg1 = types.KeyboardButton('Домены')
+    lg2 = types.KeyboardButton('Хостинги')
+    lg3 = types.KeyboardButton('VDS', )
+    lg4 = types.KeyboardButton('DS', )
+    markup.add(lg1, lg2, lg3, lg4)
+    bot.send_message(message.chat.id,
+                     "К какой части относится ваш вопрос ? \n\n",
+                     reply_markup=markup, parse_mode='html')
+    bot.register_next_step_handler(message.chat.id, qust)
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
     connection = pymysql.connect(host='62.209.143.131',
@@ -1402,40 +1414,13 @@ def callback(call):
                              'Если Вы зарегистрированный клиент - Вам необходимо выбрать «Авторизация», если новый - «Зарегистрироваться»')
         min.close()
     elif call.data == 'helpp':
-        markup = types.InlineKeyboardMarkup(row_width=2)
-        lg1 = types.InlineKeyboardButton('Техническому', callback_data='tech')
-        lg2 = types.InlineKeyboardButton('Коммерческому', callback_data='kom')
+        markup = types.ReplyKeyboardMarkup(row_width=2)
+        lg1 = types.KeyboardButton('Техническому')
+        lg2 = types.KeyboardButton('Коммерческому')
         markup.add(lg1, lg2)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
+        bot.register_next_step_handler(call.message.chat.id, tech_com)
 
-    elif call.data == 'tech':
-        markup = types.ReplyKeyboardMarkup(row_width=2)
-        lg1 = types.KeyboardButton('Домены', )
-        lg2 = types.KeyboardButton('Хостинги', )
-        lg3 = types.KeyboardButton('VDS', )
-        lg4 = types.KeyboardButton('DS', )
-        markup.add(lg1, lg2, lg3, lg4)
-        bot.send_message(call.message.chat.id,
-                         "К какой части относится ваш вопрос ? \n\n",
-                         reply_markup=markup, parse_mode='html')
-        bot.register_next_step_handler(call.message.chat.id, qust)
-
-    # elif call.data == 'd':
-    #
-    #
-    #     markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-    #     lg1 = types.KeyboardButton('1')
-    #     lg2 = types.KeyboardButton('2')
-    #     lg3 = types.KeyboardButton('3')
-    #     lg4 = types.KeyboardButton('4')
-    #     lg5 = types.KeyboardButton('Возврат')
-    #     markup.add(lg1, lg2, lg3, lg4, lg5)
-    #     bot.send_message(call.message.chat.id, 'Ваш вопрос соответствует этим ? Если да, выберет вопрос')
-    #     bot.send_message(call.message.chat.id, '1. Как сменить NS записи у домена? \n'
-    #                                            '2. Как переоформить домен на другое имя? \n'
-    #                                            '3. Как продлить срок домена ?', reply_markup=markup)
-    #
-    #     bot.register_next_step_handler(call.message, answers)
     elif call.data == 'my_services':
         tg_con = pymysql.connect(host='62.209.143.131',
                                  user='hostmasteruz_pbot',
