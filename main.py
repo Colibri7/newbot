@@ -1319,9 +1319,10 @@ def answers(message):
         markup_us = types.ReplyKeyboardMarkup(row_width=2)
         lg1 = types.KeyboardButton('Домены')
         lg2 = types.KeyboardButton('Хостинги')
-        lg3 = types.KeyboardButton('VDS', )
-        lg4 = types.KeyboardButton('DS', )
-        markup_us.add(lg1, lg2, lg3, lg4)
+        lg3 = types.KeyboardButton('VDS')
+        lg4 = types.KeyboardButton('DS')
+        lg5 = types.KeyboardButton('Возврат')
+        markup_us.add(lg1, lg2, lg3, lg4, lg5)
         bot.send_message(message.chat.id,
                          "К какой части относится ваш вопрос ? \n\n",
                          reply_markup=markup_us, parse_mode='html')
