@@ -1308,7 +1308,6 @@ def language(message):
                          reply_markup=markup_ru, parse_mode='html')
 
 
-
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
     connection = pymysql.connect(host='62.209.143.131',
@@ -1384,6 +1383,7 @@ def callback(call):
                                          text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                                          parse_mode='html')
                         bot.register_next_step_handler(message.chat.id, answers)
+
                 if message.text == 'Домены':
                     markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
                     lg1 = types.KeyboardButton('1')
@@ -1397,7 +1397,8 @@ def callback(call):
                                                       '2. Как переоформить домен на другое имя? \n'
                                                       '3. Как продлить срок домена ?', reply_markup=markup)
 
-                bot.register_next_step_handler(message, answers)
+                    bot.register_next_step_handler(message, answers)
+
             markup = types.ReplyKeyboardMarkup(row_width=2)
             lg1 = types.KeyboardButton('Домены')
             lg2 = types.KeyboardButton('Хостинги')
@@ -1408,6 +1409,7 @@ def callback(call):
                              "К какой части относится ваш вопрос ? \n\n",
                              reply_markup=markup, parse_mode='html')
             bot.register_next_step_handler(message.chat.id, qust)
+
         markup = types.ReplyKeyboardMarkup(row_width=2)
         lg1 = types.KeyboardButton('Техническому')
         lg2 = types.KeyboardButton('Коммерческому')
