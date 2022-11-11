@@ -1384,6 +1384,7 @@ def callback(call):
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
 
     elif call.data == 'tech':
+        @bot.callback_query_handler(func=lambda call: True)
         def call(call):
             def answers(message):
                 if message.text == '1':
