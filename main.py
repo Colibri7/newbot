@@ -1378,8 +1378,8 @@ def callback(call):
 
         markup = types.InlineKeyboardMarkup(row_width=2, resize_keyboard=True)
         lg1 = types.InlineKeyboardButton('Техническому',callback_data='tech')
-        lg2 = types.KeyboardButton('Коммерческому',callback_data='com')
-        lg3 = types.KeyboardButton('Возврат 🔙',callback_data='back')
+        lg2 = types.InlineKeyboardButton('Коммерческому',callback_data='com')
+        lg3 = types.InlineKeyboardButton('Возврат 🔙',callback_data='back')
 
         markup.add(lg1, lg2, lg3)
         bot.send_message(call.message.chat.id, 'К какому блоку относится ваш вопрос ?', reply_markup=markup)
