@@ -1328,7 +1328,7 @@ def answers(message):
     if message.text == '1':
         bot.send_message(message.chat.id, text="<a href='https://telegra.ph/Nginx-and-Gunicorn-08-24'>Смена ns</a>",
                          parse_mode='html')
-        bot.register_next_step_handler(message.chat.id, answers)
+
     if message.text == 'Возврат':
         markup = types.InlineKeyboardMarkup(row_width=2)
         lg1 = types.InlineKeyboardButton('Домены', callback_data='d')
@@ -1340,6 +1340,7 @@ def answers(message):
         bot.send_message(message.chat.id,
                          "К какой части относится ваш вопрос ? \n\n",
                          reply_markup=markup, parse_mode='html')
+    bot.register_next_step_handler(message.chat.id, answers)
 
 
 @bot.callback_query_handler(func=lambda call: True)
