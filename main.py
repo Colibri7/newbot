@@ -1922,6 +1922,22 @@ def callback(call):
             bot.send_message(call.message.chat.id,
                              """Agar siz ro'yxatdan o'tgan mijoz bo'lsangiz - «Kirish»ni tanlashingiz kerak, agar yangi mijoz bo'lsangiz - "Ro'yxatdan o'tish»""")
         min_tg_con.close()
+    elif call.data == 'back':
+        markup = types.InlineKeyboardMarkup(row_width=2)
+        lg1 = types.InlineKeyboardButton('Мои услуги 📊', callback_data='my_services')
+        lg2 = types.InlineKeyboardButton('Мои контакты 📋', callback_data='my_contacts')
+        lg3 = types.InlineKeyboardButton('Авторизация 🔐', callback_data='cabinet')
+        lg4 = types.InlineKeyboardButton('Связь с менеджером 👨🏻‍💻', callback_data='connect_admin',
+                                         url='https://t.me/hostmaster_support')
+        lg5 = types.InlineKeyboardButton('Зарегистрироваться 📝', callback_data='site',
+                                         url='https://hostmaster.uz/site/signup')
+        lg6 = types.InlineKeyboardButton("O'zb 🇺🇿", callback_data='uz')
+        lg7 = types.InlineKeyboardButton("Помощь 🆘", callback_data='helpp')
+
+        markup.add(lg1, lg2, lg3, lg4, lg5, lg6, lg7)
+        bot.send_message(call.message.chat.id,
+                         "Вас приветствует бот компании <b>Hostmaster</b>.\nХостинг, VDS, серверы, домены  в Узбекистане, в Ташкенте.\n\n",
+                         reply_markup=markup, parse_mode='html')
 
     c.close()
 
